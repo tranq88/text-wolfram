@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 @app.route("/sms", methods=['POST'])
-def sms_reply():
+def sms_reply() -> str:
     """Respond to incoming messages with a WolframAlpha API query response."""
     incoming_msg = request.values.get('Body', '')
     from_number = request.values.get('From', '')
