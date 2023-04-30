@@ -13,12 +13,13 @@ app = Flask(__name__)
 def sms_reply():
     """Respond to incoming messages with a WolframAlpha API query response."""
     incoming_msg = request.values.get('Body', '')
+    from_number = request.values.get('From', '')
     resp = MessagingResponse()
 
     load_dotenv()
     app_id = os.getenv('WOLFRAM_APP_ID')
 
-    resp.message(query_wolfram(app_id, incoming_msg))
+    resp.message(query_wolfram(app_id, incoming_msg, from_number))
 
     return str(resp)
 
